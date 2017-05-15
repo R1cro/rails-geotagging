@@ -1,0 +1,36 @@
+div[style="width:100%;"]
+  #map[style="width: 100%; height: 450px;"]
+    = render 'object_map'
+.col-md-8.col-md-offset-2
+  .directions_div
+    br
+    = link_to 'Get Directions', "https://www.google.com/maps/place/#{@dynamic_object.address}", target: '_blank'
+    br
+  .farm_sum
+    .button_div.first_button
+      h1
+        = @dynamic_object.name
+      br
+      = simple_format(@dynamic_object.description)
+      - if current_user
+        - if current_user.id == @dynamic_object.user_id
+            #edit_farm_button.edit_farm_button
+              = button_to "Edit this Farm", edit_dynamic_object_path(@dynamic_object), method: 'get', class: 'btn btn-warning'
+/.col-md-4.col-md-offset-4
+/  h3
+/    | Object Details
+/  fieldset
+/    p
+/      b
+/        | Name:
+/      p.btn-info.btn-sm = @dynamic_object.name
+/    - @dynamic_object.properties.each do |name, value|
+/      p
+/        b
+/          = name.humanize
+/          | :
+/          p.btn-default.btn-sm = value
+/  fieldset
+/    = link_to 'Edit', edit_dynamic_object_path(@dynamic_object), class: 'btn btn-primary btn-sm'
+/    = link_to 'Destroy',  { action: :destroy, id: @dynamic_object.id }, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm'
+/    = link_to 'Back to Objects', dynamic_objects_path, class: 'btn btn-primary btn-sm right'

@@ -1,0 +1,175 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require alertify
+ *= require alertify/bootstrap
+
+ *= require_tree .
+ *= require_self
+ */
+
+ #edit_farm_button {
+ 	position: fixed;
+ 	bottom: 20px;
+ 	left: 20px;
+ }
+
+ .directions_div {
+ 	text-align: center;
+ }
+
+ .mod_overlay {
+	width: 150%;
+	height: 2500px;
+	background-color: gray;
+	display: none;
+	position: fixed;
+	z-index: 9;
+	opacity: 0.8;
+	top: -250px;
+	left: -200px;
+}
+
+.add_new_link {
+	width: 40%;
+	height: 475px;
+	top: 9%;
+	left: 30%;
+	margin-top: 100px;
+	position: fixed;
+	background-color: #2d88c3;
+	border-radius: 5px;
+	z-index: 11;
+	display: none;
+}
+
+.add_new_link_inside {
+	width: 90%;
+	margin-left: 5%;
+}
+
+.big_rating {
+	font-size: 35px;
+}
+
+.navbar {
+	position: relative;
+	min-height: 60px;
+	margin-bottom: 0px
+}
+
+p.notice {
+	display: none;
+}
+
+p.alert {
+	display: none;
+}
+
+#farm_description {
+	height: 75px;
+}
+
+.farm_sum {
+	height: 300px;
+	border-radius: 5px;
+	border: 2px solid #2d88c3;
+	margin-top: 15px;
+}
+
+.farm_sum:hover {
+	border: 2px solid #3498db;
+	transition: border 5s ease;
+}
+
+.button_div {
+    color: #deeeff;
+	width: 90%;
+	margin: auto;
+	padding-top: 10px;
+}
+
+.first_button {
+	height: 230px;
+}
+
+a:hover{
+	color: #ffffff !important;
+	text-decoration: none!important;
+}
+
+#error_explanation h2 {
+    font-size: 16px;
+}
+
+.button-xs {
+@extend .btn;
+@extend .btn-primary;
+@extend .btn-xs;
+}
+
+form .field, form .actions {
+    margin: 12px 0;
+}
+
+
+fieldset {
+    background-color: #48719c;
+    border: solid 1px #32464a;
+    padding: 10px 15px;
+    margin: 15px 0;
+}
+
+fieldset.remove_fields {
+    position: absolute;
+    right: 20px;
+    top: 12px;
+    font-size: 12px;
+}
+
+.well.add_field {
+    color: #000000;
+}
+
+.control-label.select.optional {
+    font-weight: 400;
+    color: #000000;
+}
+
+a.add_fields {
+    color: #e7110f;
+    text-decoration: none;
+}
+
+.alert {
+    text-align: center;
+}
+.alert-error {
+    background-color: #b63b4d;
+    border-color: #b63b4d;
+    color: #b94a48;
+    text-align: left;
+}
+
+.alert.alert-alert {   background-color: #b63b4d;   border-color: #b63b4d;   color: white;   text-align: left; }
+.alert-danger {   background-color: #b63b4d;   border-color: #b63b4d;   color: white;   text-align: left; }
+.alert-success {   background-color: #099b87;   border-color: #099b87;   color: white;   text-align: left; }
+.alert-notice {   background-color: #099b87;   border-color: #099b87;   color: white;   text-align: left; }
+
+.ajs-message.ajs-error.ajs-visible {
+    background-color: #b63b4d;
+    border: 0;
+}
+.ajs-message.alert-success.ajs-visible {
+    background-color: #b63b4d;
+    border: 0;
+}

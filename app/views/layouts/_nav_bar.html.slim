@@ -1,0 +1,29 @@
+.navbar.navbar-inverse
+  .navbar-header
+    a.navbar-brand[href="/"]
+      | GeoTagging
+  .navbar-collapse.collapse.navbar-inverse-collapse
+    ul.nav.navbar-nav
+      - if current_user
+        li
+          = link_to 'Add new object', dynamic_objects_path
+        li
+          |  <a href="/users/
+          = current_user.id
+          | ">Your objects
+    ul.nav.navbar-nav.navbar-right
+      - if user_signed_in?
+        li
+          = link_to "Logged in as #{current_user.name}", edit_user_registration_path
+        li
+          = link_to "Log Out", destroy_user_session_path, method: "delete"
+      - else
+        li
+          = link_to "Sign Up", new_user_registration_path
+        li
+          = link_to "Log In", new_user_session_path
+    .ey_nav_div
+      = form_tag('/search', method: :get, class: ' navbar-form') do
+        = text_field_tag :search, params[:search], placeholder: 'city, state, zip, address', class: 'form-control'
+        = select_tag :miles, options_for_select([['1 mile', '1'], ['10 miles', '10'], ['25 miles', '25'], ['100 miles', '100']]), class: 'form-control'
+        = submit_tag 'Find Objects', name: nil, :class => 'btn btn-info'

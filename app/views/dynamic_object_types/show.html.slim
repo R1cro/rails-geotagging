@@ -1,0 +1,16 @@
+.col-md-4.col-md-offset-4
+  h1
+    | Object type
+  fieldset
+    p
+      b
+      p.btn.btn-primary.btn-sm.btn-block = @dynamic_object_type.name
+    hr
+    p
+      | Fields:
+      - @dynamic_object_type.fields.each do |field|
+        p.btn.btn-default.btn-sm.disabled
+          = field.name.humanize
+    hr
+      = link_to 'Edit', edit_dynamic_object_type_path(@dynamic_object_type), class: 'btn btn-primary btn-sm'
+      = link_to 'Back', dynamic_object_types_path, class: 'btn btn-info btn-sm'

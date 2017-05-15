@@ -1,0 +1,29 @@
+= form_for @dynamic_object do |f|
+  - if @dynamic_object.errors.any?
+    #error_explanation
+      h2
+        = pluralize(@dynamic_object.errors.count, "error")
+        |  prohibited this product from being saved:
+      ul
+        - @dynamic_object.errors.full_messages.each do |msg|
+          li
+            = msg
+  = f.hidden_field :dynamic_object_type_id
+  hr
+  = f.label "Object title"
+  = f.text_field :name, class: "form-control", placeholder: 'Just a dynamic object name.'
+  br
+  = f.label "Tell us about your object."
+  br
+  = f.text_area :description, class: "form-control", placeholder: "Let people know who you are and why you do what you do."
+  br
+  = f.label "What is the address of the farm?"
+  br
+  = f.text_field :address, class: "form-control", placeholder: "1234 Some Road, City, State 9999."
+  br
+  = f.fields_for :properties, OpenStruct.new(@dynamic_object.properties) do |builder|
+    - @dynamic_object.dynamic_object_type.fields.each do |field|
+      = render "dynamic_objects/fields/#{field.field_type}", field: field, f: builder
+  hr
+  .actions
+    = f.submit class: 'btn btn-sm btn-primary'

@@ -1,0 +1,17 @@
+.col-md-4.col-md-offset-4
+  h1
+    | Object Types
+  hr
+    - if @dynamic_object_types.empty?
+      .well
+        strong
+          | No Types
+    - @dynamic_object_types.each do |dynamic_object_type|
+      fieldset
+        = link_to dynamic_object_type.name, dynamic_object_type, class: 'btn btn-sm btn-primary btn-block'
+        hr
+          = link_to 'Show', dynamic_object_type, class: 'btn btn-default btn-sm'
+          = link_to 'Edit', edit_dynamic_object_type_path(dynamic_object_type), class: 'btn btn-default btn-sm'
+          = link_to 'Destroy', dynamic_object_type, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm'
+  fieldset
+    = link_to 'New Product type', new_dynamic_object_type_path, class: 'btn btn-sm btn-primary'
