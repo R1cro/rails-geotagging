@@ -1,4 +1,7 @@
-.col-md-4.col-md-offset-4
+.col-md-8.map
+  #map[style="width: 100%; height: 93%;"]
+    = render 'new_object_map'
+.col-md-4
   h1
     | Objects
   .farm_sum
@@ -12,27 +15,3 @@
         br
           - if !DynamicObjectType.nil?
             = submit_tag 'New Object', name: nil, class: 'btn btn-info btn-block'
-  br
-  .well
-    - if @dynamic_object.empty?
-      p
-        strong
-          | No Objects
-    - @dynamic_object.each do |object|
-      hr
-        = link_to object.name, object, class: 'btn btn-sm btn-primary btn-block'
-        hr
-          .btn.btn-default.btn-sm.btn-block.disabled
-            = 'Created: '
-            span
-              b = object.created_at
-        p
-        .btn.btn-default.btn-sm.btn-block.disabled
-          = 'Fields: '
-          span
-            b = object.properties.count
-        p
-          .btn.btn-default.btn-sm.btn-block.disabled
-            = 'Type: '
-            span
-              b = object.dynamic_object_type.name
