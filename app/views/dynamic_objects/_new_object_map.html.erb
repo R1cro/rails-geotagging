@@ -1,0 +1,33 @@
+<script type="text/javascript">
+  handler = Gmaps.build('Google');
+  handler.buildMap({
+        provider: {
+          mapTypeId: google.maps.MapTypeId.HYBRID
+        },
+        internal: {id: 'map'}},
+      function() {
+        handler.map.centerOn([50.28, 10.54]);
+        handler.fitMapToBounds();
+        handler.getMap().setZoom(5);
+      });
+
+  var markerOnMap;
+      function placeNewMarker(location) {
+    if (markerOnMap) {
+      markerOnMap.setPosition(location);
+    }
+    else {
+      markerOnMap = new google.maps.Marker({
+        position: location,
+        animation: google.maps.Animation.BOUNCE,
+        map: handler.getMap()
+      });
+    }
+  }
+  google.maps.event.addListener(handler.getMap(), 'click', function(event) {
+    placeNewMarker(event.latLng);
+    console.log('Latitude: ', event.latLng.lat());
+    console.log('Longitude: ', event.latLng.lng());
+  });
+
+</script>
