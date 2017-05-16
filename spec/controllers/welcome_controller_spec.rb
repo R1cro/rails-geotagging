@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe WelcomeController do
-  
+
   describe "GET #index" do
 
     it "renders the index template" do
@@ -9,7 +9,7 @@ describe WelcomeController do
       expect(response).to render_template("index")
     end
 
-    it "assigns a collection of farms " do 
+    it "assigns a collection of farms " do
       @user = FactoryGirl.create(:user)
       @user.farms << FactoryGirl.create(:farm)
       get :index

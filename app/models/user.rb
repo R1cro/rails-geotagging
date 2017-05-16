@@ -22,13 +22,12 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  
+
   has_many :farms
   has_many :dynamic_objects
   has_many :comments
   has_many :connections
-  
+
   devise :database_authenticatable, :registerable, :trackable, :validatable
   validates_presence_of :name
-  
 end

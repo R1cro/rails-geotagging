@@ -10,8 +10,8 @@
 #
 
 class Connection < ActiveRecord::Base
-	belongs_to :dynamic_object
-	belongs_to :user
+  belongs_to :dynamic_object
+  belongs_to :user
 
-	validates_presence_of :user_id, :dynamic_object_id
+  validates_presence_of :user_id, :dynamic_object_id
 end

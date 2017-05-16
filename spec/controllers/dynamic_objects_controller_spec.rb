@@ -15,8 +15,8 @@
 #  user_id                :integer
 #
 
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.describe DynamicObjectsController, :type => :controller do
+RSpec.describe DynamicObjectsController, type: :controller do
 
 end

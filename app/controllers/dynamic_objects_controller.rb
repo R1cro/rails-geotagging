@@ -1,5 +1,4 @@
 class DynamicObjectsController < ApplicationController
-
   def index
     @dynamic_object = DynamicObject.all
   end
@@ -10,14 +9,13 @@ class DynamicObjectsController < ApplicationController
     @marker_hash = Gmaps4rails.build_markers(@dynamic_object) do |object, marker|
       marker.lat object.latitude
       marker.lng object.longitude
-      marker.infowindow "<a target='blank' href='https://www.google.com/maps/place/"+"#{object.address}"+"'>Get Directions [Google Maps]</a>"
-      marker.json({ title: object.name })
+      marker.infowindow "<a target='blank' href='https://www.google.com/maps/place/" + "#{object.address}" + "'>Get Directions [Google Maps]</a>"
+      marker.json(title: object.name)
     end
 
     if current_user
       @connection = Connection.where(user_id: current_user.id, dynamic_object_id: @dynamic_object.id)
     end
-
   end
 
   def new
@@ -66,32 +64,30 @@ class DynamicObjectsController < ApplicationController
         search_map(@dynamic_object)
       end
     end
-
   end
 
   private
 
-  def search_map(objects)
-    @dynamic_objects = objects
-    @marker_hash = Gmaps4rails.build_markers(@dynamic_object) do |object, marker|
-      marker.lat object.latitude
-      marker.lng object.longitude
-      marker.infowindow "<a href='/dynamic_objects/"+"#{object.id}"+"'>#{object.name}, #{object.address}</a>"
-      marker.json({ title: object.name, id: object.id })
+    def search_map(objects)
+      @dynamic_objects = objects
+      @marker_hash = Gmaps4rails.build_markers(@dynamic_object) do |object, marker|
+        marker.lat object.latitude
+        marker.lng object.longitude
+        marker.infowindow "<a href='/dynamic_objects/" + "#{object.id}" + "'>#{object.name}, #{object.address}</a>"
+        marker.json(title: object.name, id: object.id)
+      end
     end
-  end
 
-  def is_owner(object)
-    @dynamic_object = object
-    if current_user.id == @dynamic_object.user_id
-      return true
-    else
-      return false
+    def is_owner(object)
+      @dynamic_object = object
+      if current_user.id == @dynamic_object.user_id
+        return true
+      else
+        return false
+      end
     end
-  end
 
-  def dynamic_object_params
-    params.require(:dynamic_object).permit!
-  end
-
+    def dynamic_object_params
+      params.require(:dynamic_object).permit!
+    end
 end

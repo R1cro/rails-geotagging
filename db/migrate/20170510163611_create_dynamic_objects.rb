@@ -2,7 +2,7 @@ class CreateDynamicObjects < ActiveRecord::Migration[5.0]
   def change
     create_table :dynamic_objects do |t|
       t.string :name
-      t.text  :description
+      t.text :description
       t.string :address
       t.float :latitude
       t.float :longitude

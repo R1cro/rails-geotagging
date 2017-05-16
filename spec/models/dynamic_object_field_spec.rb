@@ -15,8 +15,8 @@
 #  index_dynamic_object_fields_on_dynamic_object_type_id  (dynamic_object_type_id)
 #
 
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.describe DynamicObjectField, :type => :model do
+RSpec.describe DynamicObjectField, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end

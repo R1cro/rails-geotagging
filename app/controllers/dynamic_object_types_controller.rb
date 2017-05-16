@@ -42,7 +42,7 @@ class DynamicObjectTypesController < ApplicationController
 
     respond_to do |format|
       if @dynamic_object_type.save
-        format.html { redirect_to @dynamic_object_type, notice: 'Object type was successfully created.' }
+        format.html { redirect_to @dynamic_object_type, notice: "Object type was successfully created." }
         format.json { render json: @dynamic_object_type, status: :created, location: @dynamic_object_type }
       else
         format.html { render action: "new" }
@@ -58,7 +58,7 @@ class DynamicObjectTypesController < ApplicationController
 
     respond_to do |format|
       if @dynamic_object_type.update_attributes(dynamic_object_type_params)
-        format.html { redirect_to @dynamic_object_type, notice: 'dynamic_object type was successfully updated.' }
+        format.html { redirect_to @dynamic_object_type, notice: "dynamic_object type was successfully updated." }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
