@@ -1,10 +1,32 @@
 <script type="text/javascript">
-handler = Gmaps.build('Google');
-handler.buildMap({
-  provider: { mapTypeId: google.maps.MapTypeId.HYBRID },
-	internal: {id: 'map'}}, function(){
-  markers = handler.addMarkers(<%=raw @hash.to_json %>);
-  handler.bounds.extendWith(markers);
-  handler.fitMapToBounds();
-});
+  handler = Gmaps.build('Google');
+  handler.buildMap({
+    provider: {
+      mapTypeId: google.maps.MapTypeId.HYBRID
+    },
+    internal: {id: 'map'}},
+    function() {
+      markers = handler.addMarkers(<%= raw @hash.to_json %>);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+  });
+
+  var markerOnMap;
+
+  function placeNewMarker(location) {
+    if (markerOnMap) {
+      markerOnMap.setPosition(location);
+    }
+    else {
+      markerOnMap = new google.maps.Marker({
+        position: location,
+        map: handler.getMap()
+      });
+    }
+  }
+  google.maps.event.addListener(handler.getMap(), 'click', function(event) {
+    placeNewMarker(event.latLng);
+    console.log('Latitude: ', event.latLng.lat());
+    console.log('Longitude: ', event.latLng.lng());
+  });
 </script>
