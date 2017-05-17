@@ -7,4 +7,10 @@
     handler.bounds.extendWith(markers);
     handler.fitMapToBounds();
   });
+
+  var input = /** @type {!HTMLInputElement} */(
+            document.getElementById('location-input'));
+  var autocomplete = new google.maps.places.Autocomplete(input);
+        autocomplete.bindTo('bounds', map);
+
 </script>

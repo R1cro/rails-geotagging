@@ -21,6 +21,8 @@ gem "devise"
 gem "nokogiri"
 gem "i18n"
 
+gem 'foundation-rails'
+
 group :development do
   gem "annotate", ">=2.6.0"
 end
@@ -29,6 +31,7 @@ group :development, :test do
   gem "rspec-rails", "~> 3.0.0"
   gem "capybara"
   gem "factory_girl_rails"
+  gem "pry"
 end
 
 group :production do
