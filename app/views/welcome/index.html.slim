@@ -6,7 +6,7 @@ div[style="width:100%;"]
     | Recently Added Objects
   - @recent_dynamic_objects.each do |object|
     .col-md-4.col-sm-6
-      .farm_sum
+      .object_sum
         .button_div.first_button
           h4
             = link_to object.name.truncate(60), dynamic_object_path(object), method: "get"

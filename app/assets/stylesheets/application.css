@@ -80,14 +80,21 @@ p.alert {
 	height: 75px;
 }
 
-.farm_sum {
+.object_sum {
 	height: 300px;
 	border-radius: 5px;
 	border: 2px solid #2d88c3;
 	margin-top: 15px;
 }
 
-.farm_sum:hover {
+.object_new_sum {
+    height: 500px;
+    border-radius: 5px;
+    border: 2px solid #2d88c3;
+    margin-top: 15px;
+}
+
+.object_sum:hover {
 	border: 2px solid #3498db;
 	transition: border 5s ease;
 }
@@ -316,14 +323,9 @@ body {
     background-size:cover;
 }
 
-
-
-
-
-
-
-
-
-
-
-
+.col-md-4.new-object {
+    height: 94%;
+    position: absolute;
+    overflow-y: auto;
+    display: inline-block;
+}

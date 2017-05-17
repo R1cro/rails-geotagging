@@ -6,7 +6,7 @@ div[style="width:100%;"]
     = "Objects Near: #{params[:search].titleize}"
   - @dynamic_objects.each do |object|
     .col-md-4.col-sm-6
-      .farm_sum
+      .object_sum
         .button_div.first_button
           h4
             = link_to object.name.truncate(60), dynamic_object_path(object), method: "get"
@@ -25,23 +25,4 @@ div[style="width:100%;"]
               = ' miles'
             br
         .button_div.real_button_div
-          = button_to "View", dynamic_object_path(object), method: "get", class: "btn btn-info btn-block"
-  /table.table.table-striped.table-hover
-  /  thead
-  /    th
-  /      | Name
-  /    th
-  /      | Address
-  /    th
-  /      | Distance
-  /  tbody
-  /    - @dynamic_objects.each do |object|
-  /      tr
-  /        td
-  /          = link_to object.name, dynamic_object_path(object), method: "get"
-  /        td
-  /          = object.address
-  /        td
-  /          strong
-  /            = object.distance.round(2)
-  /          = "miles"
+          = button_to "View", dynamic_object_path(object), class: "btn btn-info btn-block"
