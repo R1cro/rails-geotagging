@@ -23,3 +23,8 @@ javascript:
       dataType: 'script'
     })
   })
+  
+  $(document).ready(function() {
+    console.log('triggering!');
+    $("#object-form").trigger('show');
+  })
