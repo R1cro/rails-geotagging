@@ -9,7 +9,7 @@
     .panel-heading
       | Object Type
     .panel-body
-      = select_tag :dynamic_object_type_id, options_from_collection_for_select(DynamicObjectType.all, :id, :name), class: 'type-select form-control'
+      = select_tag :dynamic_object_type_id, options_from_collection_for_select(DynamicObjectType.all, :id, :name, @dynamic_object_type.id), class: 'type-select form-control'
   = render 'form'
   
 javascript:
@@ -25,6 +25,5 @@ javascript:
   })
   
   $(document).ready(function() {
-    console.log('triggering!');
     $("#object-form").trigger('show');
   })
