@@ -21,7 +21,9 @@ gem 'devise'
 gem 'nokogiri'
 gem 'i18n'
 
-group :development do 
+group :development do
+  gem 'better_errors'
+  gem 'high_voltage'
 	gem 'annotate', ">=2.6.0"
 end
 
@@ -44,3 +46,6 @@ gem 'alertifyjs-rails'
 #Map Stuff
 gem "geocoder"
 gem 'gmaps4rails'
+
+# User's stuff
+gem "pundit"

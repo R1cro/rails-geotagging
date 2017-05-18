@@ -1,7 +1,9 @@
 class DynamicObjectTypesController < ApplicationController
-  def index
-    @dynamic_object_types = DynamicObjectType.all
+  before_action :authenticate_user!
 
+  def index
+    authorize User
+    @dynamic_object_types = DynamicObjectType.all
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @dynamic_object_types }
@@ -12,7 +14,7 @@ class DynamicObjectTypesController < ApplicationController
   # GET /dynamic_object_types/1.json
   def show
     @dynamic_object_type = DynamicObjectType.find(params[:id])
-
+    authorize User
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @dynamic_object_type }
@@ -23,7 +25,7 @@ class DynamicObjectTypesController < ApplicationController
   # GET /dynamic_object_types/new.json
   def new
     @dynamic_object_type = DynamicObjectType.new
-
+    authorize User
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @dynamic_object_type }
@@ -33,12 +35,14 @@ class DynamicObjectTypesController < ApplicationController
   # GET /dynamic_object_types/1/edit
   def edit
     @dynamic_object_type = DynamicObjectType.find(params[:id])
+    authorize User
   end
 
   # POST /dynamic_object_types
   # POST /dynamic_object_types.json
   def create
     @dynamic_object_type = DynamicObjectType.new(dynamic_object_type_params)
+    authorize User
 
     respond_to do |format|
       if @dynamic_object_type.save
@@ -55,6 +59,7 @@ class DynamicObjectTypesController < ApplicationController
   # PUT /dynamic_object_types/1.json
   def update
     @dynamic_object_type = DynamicObjectType.find(params[:id])
+    authorize User
 
     respond_to do |format|
       if @dynamic_object_type.update_attributes(dynamic_object_type_params)
@@ -71,6 +76,7 @@ class DynamicObjectTypesController < ApplicationController
   # DELETE /dynamic_object_types/1.json
   def destroy
     @dynamic_object_type = DynamicObjectType.find(params[:id])
+    authorize User
     @dynamic_object_type.destroy
 
     respond_to do |format|

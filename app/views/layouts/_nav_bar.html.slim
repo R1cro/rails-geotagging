@@ -17,6 +17,7 @@
           = link_to "Logged in as #{current_user.name}", edit_user_registration_path
         li
           = link_to "Log Out", destroy_user_session_path, method: "delete"
+
       - else
         li
           = link_to "Sign Up", new_user_registration_path
@@ -27,3 +28,7 @@
         = text_field_tag :search, params[:search], placeholder: 'city, state, zip, address', class: 'form-control'
         = select_tag :miles, options_for_select([['1 mile', '1'], ['10 miles', '10'], ['25 miles', '25'], ['100 miles', '100']]), class: 'form-control'
         = submit_tag 'Find Objects', name: nil, :class => 'btn btn-info'
+        span[style="padding-left:15%"]
+        - if current_user && current_user.admin?
+            = link_to 'Registered users', users_url, :class => 'btn btn-warning'
+            = link_to 'Manage object types', dynamic_object_types_url,  :class => 'btn btn-warning'
