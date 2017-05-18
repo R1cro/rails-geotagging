@@ -1,5 +1,4 @@
 class DynamicObjectsController < ApplicationController
-  before_action :set_random_type
 
   def show
     @dynamic_object = DynamicObject.find(params[:id])
@@ -18,6 +17,7 @@ class DynamicObjectsController < ApplicationController
   end
 
   def new
+    @dynamic_object_type = DynamicObjectType.find(params[:dynamic_object_type_id] || 1)
     @dynamic_object = DynamicObject.new(dynamic_object_type: @dynamic_object_type)
     respond_to do |format|
       format.js
@@ -70,14 +70,6 @@ class DynamicObjectsController < ApplicationController
   end
 
   private
-
-  def set_random_type
-    if params[:dynamic_object_type_id].blank?
-      @dynamic_object_type = DynamicObjectType.all.sample
-    else
-      @dynamic_object_type = DynamicObjectType.find(params[:dynamic_object_type_id])
-    end
-  end
 
   def search_map(objects)
     @dynamic_objects = objects

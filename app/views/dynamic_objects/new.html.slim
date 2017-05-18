@@ -9,18 +9,17 @@
       = form_tag new_dynamic_object_path, method: :get do
         p
           b = 'Select object type'
-        = select_tag :dynamic_object_type_id, options_from_collection_for_select(DynamicObjectType.all, :id, :name),
+        = select_tag :dynamic_object_type_id, options_from_collection_for_select(DynamicObjectType.all, :id, :name, @dynamic_object_type.id),
                 include_blank: true, class: 'form-control'
         = render 'form'
 
 
 javascript:
-  $("#new-object-form").hide();
   $('#dynamic_object_type_id').change(function (event) {
     $.ajax({
       type: "GET",
       url: "/dynamic_objects/new",
       data: { dynamic_object_type_id: event.target.value },
       dataType: "script"
-    })
-  })
+    });
+  });
