@@ -1,33 +1,67 @@
 <script type="text/javascript">
-  handler = Gmaps.build('Google');
-  handler.buildMap({
-        provider: {
-          mapTypeId: google.maps.MapTypeId.HYBRID
-        },
-        internal: {id: 'map'}},
-      function() {
-        handler.map.centerOn([50.28, 10.54]);
-        handler.fitMapToBounds();
-        handler.getMap().setZoom(5);
+    handler = Gmaps.build('Google');
+    handler.buildMap({
+          provider: {
+            mapTypeId: google.maps.MapTypeId.HYBRID
+          },
+          internal: {id: 'map'}},
+        function() {
+          handler.map.centerOn([50.28, 10.54]);
+          handler.fitMapToBounds();
+          handler.getMap().setZoom(5);
+        });
+
+    $(document).ready(function() {
+      var markerOnMap;
+          function placeNewMarker(location) {
+        if (markerOnMap) {
+          markerOnMap.setPosition(location);
+        }
+        else {
+          markerOnMap = new google.maps.Marker({
+            position: location,
+            animation: google.maps.Animation.BOUNCE,
+            map: handler.getMap()
+          });
+        }
+      }
+      google.maps.event.addListener(handler.getMap(), 'click', function(event) {
+        placeNewMarker(event.latLng);
+        console.log('Latitude: ', event.latLng.lat());
+        console.log('Longitude: ', event.latLng.lng());
       });
 
-  var markerOnMap;
-      function placeNewMarker(location) {
-    if (markerOnMap) {
-      markerOnMap.setPosition(location);
-    }
-    else {
-      markerOnMap = new google.maps.Marker({
-        position: location,
-        animation: google.maps.Animation.BOUNCE,
-        map: handler.getMap()
+      $('#new-object-form').on('show', function () {
+        var input = /** @type {!HTMLInputElement} */(
+            document.getElementById('location-input'));
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        google.maps.event.addListener(handler.getMap(), 'bounds_changed', function () {
+          autocomplete.bindTo(handler.getMap(), 'bounds');
+        });
+        var marker = new google.maps.Marker({
+          map: handler.getMap(),
+          anchorPoint: new google.maps.Point(0, -29)
+        });
+        autocomplete.addListener('place_changed', function () {
+          marker.setVisible(false);
+          var place = autocomplete.getPlace();
+          if (!place.geometry) {
+            // User entered the name of a Place that was not suggested and
+            // pressed the Enter key, or the Place Details request failed.
+            window.alert("No details available for input: '" + place.name + "'");
+            return;
+          }
+          // If the place has a geometry, then present it on a map.
+          if (place.geometry.viewport) {
+            handler.getMap().fitBounds(place.geometry.viewport);
+          } else {
+            handler.getMap().setCenter(place.geometry.location);
+            handler.getMap().setZoom(17);  // Why 17? Because it looks good.
+          }
+          marker.setPosition(place.geometry.location);
+          marker.setVisible(true);
+        });
       });
-    }
-  }
-  google.maps.event.addListener(handler.getMap(), 'click', function(event) {
-    placeNewMarker(event.latLng);
-    console.log('Latitude: ', event.latLng.lat());
-    console.log('Longitude: ', event.latLng.lng());
+
   });
-
 </script>

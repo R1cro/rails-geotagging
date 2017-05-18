@@ -10,7 +10,7 @@
         p
           b = 'Select object type'
         = select_tag :dynamic_object_type_id, options_from_collection_for_select(DynamicObjectType.all, :id, :name, @dynamic_object_type.id),
-                include_blank: true, class: 'form-control'
+                include_blank: true, class: 'type-select form-control'
         = render 'form'
 
 
@@ -23,3 +23,7 @@ javascript:
       dataType: "script"
     });
   });
+
+  $(document).ready(function () {
+    $("#new-object-form").trigger('show');
+  })
