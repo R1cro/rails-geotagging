@@ -23,7 +23,6 @@ gem 'i18n'
 
 group :development do
   gem 'better_errors'
-  gem 'high_voltage'
 	gem 'annotate', ">=2.6.0"
 end
 
@@ -40,7 +39,6 @@ end
 gem 'newrelic_rpm'
 
 #notifications
-#gem "gritter", "1.1.0"
 gem 'alertifyjs-rails'
 
 #Map Stuff

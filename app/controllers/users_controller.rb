@@ -15,11 +15,6 @@ class UsersController < ApplicationController
 		@connections = @user.connections
 	end
 
-  # def edit
-	# 	@user = User.find(params[:id])
-	# 	authorize @user
-	# end
-
 	def update
 		@user = User.find(params[:id])
 		authorize @user
