@@ -15,16 +15,16 @@
       .panel-heading
           | Object Details
       .panel-body
-        = f.label "Title"
-        = f.text_field :name, class: "form-control"
+        = f.label "Title", class: "required"
+        = f.text_field :name, class: "form-control", required: true
         br
-        = f.label "Short information"
+        = f.label "Short information", class: "required"
         br
-        = f.text_area :description, class: "form-control"
+        = f.text_area :description, class: "form-control", required: true
         br
-        = f.label "Location"
+        = f.label "Location", class: "required"
         br
-        = f.text_field :address, class: "form-control", id: "location-input"
+        = f.text_field :address, class: "form-control", id: "location-input", required: true
         br
 
     .panel.panel-default

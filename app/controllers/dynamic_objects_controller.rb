@@ -19,8 +19,9 @@ class DynamicObjectsController < ApplicationController
   end
 
   def new
-    @dynamic_object_type = DynamicObjectType.find(params[:dynamic_object_type_id] || 1)
-    @dynamic_object = DynamicObject.new(dynamic_object_type: @dynamic_object_type)
+    @dynamic_object_type_id = params[:dynamic_object_type_id] || 1
+    dynamic_object_type = DynamicObjectType.find(@dynamic_object_type_id)
+    @dynamic_object = DynamicObject.new(dynamic_object_type: dynamic_object_type)
 
     respond_to do |format|
       format.html
