@@ -1,4 +1,6 @@
 class DynamicObjectTypesController < ApplicationController
+  respond_to :html, :js
+
   def index
     @dynamic_object_types = DynamicObjectType.all
 
@@ -15,7 +17,7 @@ class DynamicObjectTypesController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @dynamic_object_type }
+      format.js { render json: @dynamic_object_type }
     end
   end
 

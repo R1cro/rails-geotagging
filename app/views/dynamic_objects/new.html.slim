@@ -1,4 +1,29 @@
-.col-md-4.col-md-offset-4
-  h1
-    | New object
+.col-md-2
+
+.col-md-4
+  #map[style="width: 100%; height: 450px;"]
+    = render 'search_map'
+
+.col-md-4
+  .panel.panel-default
+    .panel-heading
+      | Object Type
+    .panel-body
+      = select_tag :dynamic_object_type_id, options_from_collection_for_select(DynamicObjectType.all, :id, :name, @dynamic_object_type_id), class: 'type-select form-control'
   = render 'form'
+  
+javascript:
+  $('.type-select').change(function(event) {
+    $.ajax({
+      type: 'GET',
+      url: '/dynamic_objects/new',
+      data: {
+        dynamic_object_type_id: event.target.value
+      },
+      dataType: 'script'
+    })
+  })
+  
+  $(document).ready(function() {
+    $("#object-form").trigger('show');
+  })
