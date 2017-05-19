@@ -8,8 +8,8 @@
 #  updated_at :datetime         not null
 #
 
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.describe DynamicObjectTypesController, :type => :controller do
+RSpec.describe DynamicObjectTypesController, type: :controller do
 
 end

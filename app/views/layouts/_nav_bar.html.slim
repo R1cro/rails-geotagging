@@ -6,7 +6,7 @@
     ul.nav.navbar-nav
       - if current_user
         li
-          = link_to 'Add new object', dynamic_objects_path
+          = link_to 'Add new object', new_dynamic_object_path
         li
           |  <a href="/users/
           = current_user.id

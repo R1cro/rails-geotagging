@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-
   enum role: [:user, :admin]
   after_initialize :set_default_role, if: :new_record?
 
@@ -10,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :dynamic_objects
   has_many :comments
   has_many :connections
-  
+
   devise :database_authenticatable, :registerable, :trackable, :validatable
   validates_presence_of :name
 
@@ -22,5 +21,4 @@ class User < ActiveRecord::Base
       user.admin!
     end
   end
-
 end

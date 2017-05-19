@@ -2,6 +2,8 @@ class DynamicObjectTypesController < ApplicationController
   before_action :authenticate_user!
   before_action :authorize_user
 
+  respond_to :html, :js
+
   def index
     @dynamic_object_types = DynamicObjectType.all
     respond_to do |format|
@@ -16,7 +18,7 @@ class DynamicObjectTypesController < ApplicationController
     @dynamic_object_type = DynamicObjectType.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @dynamic_object_type }
+      format.js { render json: @dynamic_object_type }
     end
   end
 
@@ -42,7 +44,7 @@ class DynamicObjectTypesController < ApplicationController
 
     respond_to do |format|
       if @dynamic_object_type.save
-        format.html { redirect_to @dynamic_object_type, notice: 'Object type was successfully created.' }
+        format.html { redirect_to @dynamic_object_type, notice: "Object type was successfully created." }
         format.json { render json: @dynamic_object_type, status: :created, location: @dynamic_object_type }
       else
         format.html { render action: "new" }
@@ -58,7 +60,7 @@ class DynamicObjectTypesController < ApplicationController
 
     respond_to do |format|
       if @dynamic_object_type.update_attributes(dynamic_object_type_params)
-        format.html { redirect_to @dynamic_object_type, notice: 'dynamic_object type was successfully updated.' }
+        format.html { redirect_to @dynamic_object_type, notice: "dynamic_object type was successfully updated." }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -79,14 +81,13 @@ class DynamicObjectTypesController < ApplicationController
     end
   end
 
-
   private
 
-  def authorize_user
-    authorize User
-  end
+    def authorize_user
+      authorize User
+    end
 
-  def dynamic_object_type_params
-    params.require(:dynamic_object_type).permit!
-  end
+    def dynamic_object_type_params
+      params.require(:dynamic_object_type).permit!
+    end
 end
