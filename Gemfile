@@ -14,6 +14,7 @@ gem "nokogiri"
 gem "i18n"
 
 gem "foundation-rails"
+gem "font-awesome-rails"
 
 group :development do
   gem "annotate", ">=2.6.0"
