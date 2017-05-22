@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   root "welcome#index"
   get "/search" => "dynamic_objects#search"
+  get "/location" => "users#location"
 
   resources :connections, only: [:create, :destroy]
 
