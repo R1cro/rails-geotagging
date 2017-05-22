@@ -32,6 +32,11 @@ class UsersController < ApplicationController
     redirect_to users_path, notice: "User deleted."
   end
 
+  def location
+    @users = User.all
+    authorize User
+  end
+
   private
 
     def secure_params

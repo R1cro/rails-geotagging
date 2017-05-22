@@ -11,6 +11,8 @@
           |  <a href="/users/
           = current_user.id
           | ">Your objects
+        li
+          = link_to 'User location', location_url
     ul.nav.navbar-nav.navbar-right
       - if user_signed_in?
         li
