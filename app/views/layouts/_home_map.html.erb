@@ -1,10 +1,17 @@
 <script type="text/javascript">
-handler = Gmaps.build('Google');
-handler.buildMap({
-  provider: { mapTypeId: google.maps.MapTypeId.HYBRID },
-	internal: {id: 'map'}}, function(){
-  markers = handler.addMarkers(<%=raw @hash.to_json %>);
-  handler.bounds.extendWith(markers);
-  handler.fitMapToBounds();
-});
+  var map = new google.maps.Map(document.getElementById('map'), {
+    mapTypeId: google.maps.MapTypeId.HYBRID,
+    zoom: 4,
+    center: {lat: 53.9, lng: 27.56}
+  });
+  var bounds = new google.maps.LatLngBounds();
+  var markers = <%= raw @hash.to_json %>
+  for (i = 0; i < markers.length; i++) {
+    marker = new google.maps.Marker({
+      position: new google.maps.LatLng(markers[i].lat, markers[i].lng),
+      map: map
+    });
+    bounds.extend(marker.position);
+  }
+  map.fitBounds(bounds);
 </script>
