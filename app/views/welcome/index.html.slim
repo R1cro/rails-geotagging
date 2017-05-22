@@ -1,29 +1,6 @@
 div.col-md-6
   #map[style="height: 100%;"]
     = render '/layouts/home_map'
-.col-md-6
-  h2
-    | Recently Added Objects
+.col-md-6.objects-container
   - @recent_dynamic_objects.each do |object|
-    .col-md-4.col-sm-6
-      .farm_sum
-        .button_div.first_button
-          h4
-            = link_to object.name.truncate(60), dynamic_object_path(object), method: "get"
-          br
-          strong
-            = "Address: "
-          = object.address.truncate(30)
-          p
-          = 'Latitude / Longitude : '
-          = object.latitude
-          = ' / '
-          = object.longitude
-          br
-          strong
-            = "Description: "
-          = object.description.truncate(260)
-          br
-          br
-        .button_div.real_button_div
-          = button_to "View", dynamic_object_path(object), method: "get", class: "btn btn-info btn-block"
+    = render "object_card", object: object

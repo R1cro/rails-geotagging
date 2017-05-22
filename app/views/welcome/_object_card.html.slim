@@ -1,0 +1,32 @@
+.col-md-4.col-sm-6
+  .panel.panel-default
+    .panel-heading
+      strong
+        = object.name
+      small[style="float: right"]
+        = object.dynamic_object_type.name
+    .panel-body
+      strong 
+        | Description: 
+      = object.description
+      hr
+      strong 
+        | Address: 
+      = object.address
+    /   br
+    /   strong
+    /     = "Address: "
+    /   = object.address.truncate(30)
+    /   p
+    /   = 'Latitude / Longitude : '
+    /   = object.latitude
+    /   = ' / '
+    /   = object.longitude
+    /   br
+    /   strong
+    /     = "Description: "
+    /   = object.description.truncate(260)
+    /   br
+    /   br
+    / .button_div.real_button_div
+    /   = button_to "View", dynamic_object_path(object), method: "get", class: "btn btn-info btn-block"
