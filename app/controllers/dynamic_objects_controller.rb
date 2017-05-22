@@ -1,4 +1,6 @@
 class DynamicObjectsController < ApplicationController
+  before_action :authenticate_user!, except: %w(index search show)
+
   def index
     @dynamic_object = DynamicObject.all
   end
@@ -91,6 +93,10 @@ class DynamicObjectsController < ApplicationController
       else
         return false
       end
+    end
+
+    def set_user
+      @user = current_user
     end
 
     def dynamic_object_params

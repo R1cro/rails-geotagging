@@ -1,0 +1,10 @@
+br
+= link_to user.email, user, class: 'btn btn-sm btn-warning btn-block'
+hr
+  = simple_form_for(user) do |f|
+    = f.label 'Role'
+    = f.input_field :role, collection: User.roles.keys.map { |role| [role.titleize, role] }, class: 'form-control'
+    = f.submit 'Change Role', class: 'btn btn-primary btn-block'
+  br
+      = link_to('Delete user', user_path(user), data: {confirm: 'Are you sure?'},
+              method: :delete, class: 'btn btn-danger btn-sm') unless user == current_user || user.admin?

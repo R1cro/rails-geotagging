@@ -27,7 +27,7 @@ class DynamicObject < ApplicationRecord
   validates :description, presence: true
   validates :name, presence: true
   validate :validate_properties
-  
+
   def validate_properties
     dynamic_object_type.fields.each do |field|
       if field.required? && properties[field.name].blank?

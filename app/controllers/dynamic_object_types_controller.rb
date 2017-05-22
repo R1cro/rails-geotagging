@@ -1,9 +1,11 @@
 class DynamicObjectTypesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :authorize_user
+
   respond_to :html, :js
 
   def index
     @dynamic_object_types = DynamicObjectType.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @dynamic_object_types }
@@ -14,7 +16,6 @@ class DynamicObjectTypesController < ApplicationController
   # GET /dynamic_object_types/1.json
   def show
     @dynamic_object_type = DynamicObjectType.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.js { render json: @dynamic_object_type }
@@ -25,7 +26,6 @@ class DynamicObjectTypesController < ApplicationController
   # GET /dynamic_object_types/new.json
   def new
     @dynamic_object_type = DynamicObjectType.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @dynamic_object_type }
@@ -81,7 +81,13 @@ class DynamicObjectTypesController < ApplicationController
     end
   end
 
-  def dynamic_object_type_params
-    params.require(:dynamic_object_type).permit!
-  end
+  private
+
+    def authorize_user
+      authorize User
+    end
+
+    def dynamic_object_type_params
+      params.require(:dynamic_object_type).permit!
+    end
 end

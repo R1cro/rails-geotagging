@@ -35,6 +35,13 @@ group :production do
 end
 
 gem "newrelic_rpm"
+
+#notifications
 gem "alertifyjs-rails"
+
+#Map Stuff
 gem "geocoder"
 gem "gmaps4rails"
+
+# User's stuff
+gem "pundit"
