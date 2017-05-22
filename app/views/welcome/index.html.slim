@@ -1,6 +1,6 @@
 div.col-md-6
-  #map[style="height: 100%;"]
+  #map[style="height: 90%;"]
     = render '/layouts/home_map'
-.col-md-6.objects-container
+.col-md-6
   - @recent_dynamic_objects.each do |object|
     = render "object_card", object: object

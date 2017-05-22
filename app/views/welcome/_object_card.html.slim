@@ -1,18 +1,19 @@
-.col-md-4.col-sm-6
-  .panel.panel-default
-    .panel-heading
-      strong
-        = object.name
-      small[style="float: right"]
-        = object.dynamic_object_type.name
-    .panel-body
-      strong 
-        | Description: 
-      = object.description
-      hr
-      strong 
-        | Address: 
-      = object.address
+.col-md-4.col-sm-6.object-container
+  a[href=""]
+    .panel.panel-default
+      .panel-heading
+        strong
+          = object.name
+        small[style="float: right"]
+          = object.dynamic_object_type.name
+      .panel-body
+        strong 
+          | Description: 
+        = object.description
+        hr
+        strong 
+          | Address: 
+        = object.address
     /   br
     /   strong
     /     = "Address: "

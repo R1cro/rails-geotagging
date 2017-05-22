@@ -18,8 +18,11 @@
  *= require font-awesome
  */
 
+
+
 .navbar {
-  margin-bottom: 0px !important;
+  /*margin-bottom: 0px !important;*/
+  margin-bottom: 20px;
   border-bottom: 1px solid #DBDBDB !important;
 }
 
@@ -60,4 +63,14 @@ form {
   color: gray;
   position: absolute;
   padding: 10px;
+}
+
+.search-form input:-webkit-autofill {
+   -webkit-box-shadow: 0 0 0 30px #f8f8f8 inset;
+}
+
+.vertical-divider {
+  display: inline-block;
+  width: 1px;
+  border-right: 1px solid #DBDBDB;
 }
