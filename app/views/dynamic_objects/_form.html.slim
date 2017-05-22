@@ -1,4 +1,10 @@
 #object-form
+  .panel.panel-default
+    .panel-heading
+      | Object Type
+    .panel-body
+      = select_tag :dynamic_object_type_id, options_from_collection_for_select(DynamicObjectType.all, :id, :name, @dynamic_object.dynamic_object_type_id), class: 'type-select form-control'
+
   = form_for @dynamic_object do |f|
     - if @dynamic_object.errors.any?
       #error_explanation

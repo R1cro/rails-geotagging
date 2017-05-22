@@ -4,3 +4,4 @@ div.col-md-6
 .col-md-6
   - @recent_dynamic_objects.each do |object|
     = render "object_card", object: object
+    = render "object_modal", object: object

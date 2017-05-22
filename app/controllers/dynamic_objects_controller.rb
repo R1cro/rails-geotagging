@@ -43,6 +43,11 @@ class DynamicObjectsController < ApplicationController
 
   def edit
     @dynamic_object = DynamicObject.find(params[:id])
+    
+    @marker_hash = Gmaps4rails.build_markers(@dynamic_object) do |object, marker|
+      marker.lat object.latitude
+      marker.lng object.longitude
+    end
   end
 
   def update
