@@ -10,7 +10,7 @@
   function handleError(error){
     switch(error.code)
     {
-      case error.PERMISSION_DENIED: alert("Google Chrome? You must use HTTPS non HTTP...");break;
+      case error.PERMISSION_DENIED: alert("Google Chrome? You must use HTTPS not HTTP...");break;
       case error.POSITION_UNAVAILABLE: alert("Could not detect current position");break;
       case error.TIMEOUT: alert("Retrieving position timed out");break;
       default: alert("Unknown Error");break;
@@ -27,13 +27,12 @@
     };
     var map = new google.maps.Map(container[0],mapOptions);
     container.css('display','block');
-    var marker = new google.maps.Marker({
-      position: myLatLong,
-      map:map,
-    });
     var infowindow = new google.maps.InfoWindow({
-      content: '<b>You are here!</b>' + '<br><br>Latitude: ' + myLatLong.lat() + '<br>Longitude: ' + myLatLong.lng()
-  });
+      map: map,
+      position: myLatLong,
+      content:
+      '<b>You are here!</b>' + '<br><br>Latitude: ' + position.coords.latitude + '<br>Longitude: ' + position.coords.longitude
+    });
     infowindow.open(map, marker);
   }
 </script>
