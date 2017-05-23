@@ -1,20 +1,24 @@
-.navbar.navbar-inverse
+.navbar.navbar-default
   .navbar-header
     a.navbar-brand[href="/"]
-      | GeoTagging
+      i.fa.fa-map-pin.fa-дп.navbar-logo
   .navbar-collapse.collapse.navbar-inverse-collapse
     ul.nav.navbar-nav
+
+    ul.nav.navbar-nav.navbar-right
       - if current_user
         li
-          = link_to 'Add new object', new_dynamic_object_path
-        li
-          |  <a href="/users/
-          = current_user.id
-          | ">Your objects
-    ul.nav.navbar-nav.navbar-right
+          = link_to 'New Object', new_dynamic_object_path
+          
+      - if current_user&.admin?
+        li 
+          = link_to "New Type", new_dynamic_object_type_path, class: "right-divider"
+          
+      .vertical-divider
       - if user_signed_in?
+      
         li
-          = link_to "Logged in as #{current_user.name}", edit_user_registration_path
+          = link_to "Profile", edit_user_registration_path
         li
           = link_to "Log Out", destroy_user_session_path, method: "delete"
 
@@ -23,12 +27,7 @@
           = link_to "Sign Up", new_user_registration_path
         li
           = link_to "Log In", new_user_session_path
-    .ey_nav_div
-      = form_tag('/search', method: :get, class: ' navbar-form') do
-        = text_field_tag :search, params[:search], placeholder: 'city, state, zip, address', class: 'form-control'
-        = select_tag :miles, options_for_select([['1 mile', '1'], ['10 miles', '10'], ['25 miles', '25'], ['100 miles', '100']]), class: 'form-control'
-        = submit_tag 'Find Objects', name: nil, :class => 'btn btn-info'
-        span[style="padding-left:15%"]
-        - if current_user && current_user.admin?
-            = link_to 'Registered users', users_url, :class => 'btn btn-warning'
-            = link_to 'Manage object types', dynamic_object_types_url,  :class => 'btn btn-warning'
+    .search-block
+      = form_tag('/search', method: :get, class: 'search-form') do
+        i.fa.fa-search
+        = text_field_tag :search, params[:search], placeholder: 'Search', class: 'navbar-search-input'

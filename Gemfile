@@ -3,7 +3,8 @@ gem "rails", "5.0.2"
 gem "pg"
 gem "simple_form"
 gem "slim"
-gem "bootstrap", "~> 4.0.0.alpha6"
+gem "bootstrap-sass", "~> 3.3.6"
+gem "sass-rails", ">= 3.2"
 gem "uglifier"
 gem "coffee-rails"
 gem "jquery-rails"
@@ -13,7 +14,7 @@ gem "devise"
 gem "nokogiri"
 gem "i18n"
 
-gem "foundation-rails"
+gem "font-awesome-rails"
 
 group :development do
   gem "annotate", ">=2.6.0"
@@ -43,5 +44,5 @@ gem "alertifyjs-rails"
 gem "geocoder"
 gem "gmaps4rails"
 
-# User's stuff
+# User"s stuff
 gem "pundit"

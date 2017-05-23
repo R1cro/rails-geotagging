@@ -1,0 +1,16 @@
+.col-md-4.col-sm-6.object-container
+  a[href="#" data-toggle="modal" data-target=("#do-" + object.id.to_s)]
+    .panel.panel-default
+      .panel-heading
+        strong
+          = object.name
+        span.label.label-primary[style="float: right"]
+          = object.dynamic_object_type.name
+      .panel-body
+        strong 
+          | Description: 
+        = object.description
+        hr
+        strong 
+          | Address: 
+        = object.address

@@ -1,0 +1,77 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require alertify
+ *= require alertify/bootstrap
+
+ *= require_tree .
+ *= require_self
+ *= require font-awesome
+ */
+
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+
+.navbar {
+  /*margin-bottom: 0px !important;*/
+  margin-bottom: 20px;
+  border-bottom: 1px solid #DBDBDB !important;
+}
+
+form {
+  margin-bottom: 0;
+}
+
+
+.navbar-logo {
+  color: #FF5A5F;
+  padding: 2px 8px;
+}
+
+.navbar-header {
+  border-right: 1px solid #DBDBDB;
+}
+
+.navbar-search-input {
+  display: block;
+  height: 36px;
+  width: 80%;
+  background: none !important;
+  border-width: initial !important;
+  border-style: none !important;
+  border-color: initial !important;
+  border-image: initial !important;
+  margin: 0px !important;
+  outline: none !important;
+  padding: 0px 48px 0px 32px !important;
+  transition: color 1s !important;
+}
+
+.search-block {
+  padding-top: 8px;
+}
+
+.search-form .fa-search {
+  color: gray;
+  position: absolute;
+  padding: 10px;
+}
+
+.search-form input:-webkit-autofill {
+   -webkit-box-shadow: 0 0 0 30px #f8f8f8 inset;
+}
+
+.vertical-divider {
+  display: inline-block;
+  width: 1px;
+  border-right: 1px solid #DBDBDB;
+}
