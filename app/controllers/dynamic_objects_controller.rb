@@ -21,10 +21,13 @@ class DynamicObjectsController < ApplicationController
   end
 
   def new
-    @dynamic_object_type_id = params[:dynamic_object_type_id] || 1
-    dynamic_object_type = DynamicObjectType.find(@dynamic_object_type_id)
-    @dynamic_object = DynamicObject.new(dynamic_object_type: dynamic_object_type)
-
+    if DynamicObjectType.exists?
+      @dynamic_object_type_id = params[:dynamic_object_type_id] || 1
+      dynamic_object_type = DynamicObjectType.find(@dynamic_object_type_id)
+      @dynamic_object = DynamicObject.new(dynamic_object_type: dynamic_object_type)
+    else
+      redirect_to :root, notice: "Can't find any exist object type."
+    end
     respond_to do |format|
       format.html
       format.js
