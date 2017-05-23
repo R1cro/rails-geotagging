@@ -1,7 +1,5 @@
 <script type="text/javascript">
-  function getLocation(){
-    navigator.geolocation.getCurrentPosition(handleSuccess,handleError);
-  }
+  navigator.geolocation.getCurrentPosition(handleSuccess,handleError);
 
   function handleSuccess(position){
     drawMap(position);
@@ -33,6 +31,6 @@
       content:
       '<b>You are here!</b>' + '<br><br>Latitude: ' + position.coords.latitude + '<br>Longitude: ' + position.coords.longitude
     });
-    infowindow.open(map, marker);
+    infowindow.open(map);
   }
 </script>

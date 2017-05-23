@@ -45,3 +45,6 @@ gem "gmaps4rails"
 
 # User's stuff
 gem "pundit"
+
+# HTTPS
+gem 'thin'
