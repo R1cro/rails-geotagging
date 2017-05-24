@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :connections, only: [:create, :destroy]
   resources :dynamic_objects do
     collection do
-      get 'search'
+      get "search"
     end
   end
   resources :dynamic_object_types
