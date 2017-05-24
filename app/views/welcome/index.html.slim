@@ -6,9 +6,7 @@ div.col-md-6
     span.sr-only Loading...
 
 .col-md-6#dynamic-objects
-  - @recent_dynamic_objects.each do |object|
-    = render "object_card", object: object
-    = render "object_modal", object: object
+  = render 'objects'
     
 javascript:
   $('#loading').hide();
