@@ -6,19 +6,3 @@
 
 .col-md-5
   = render 'form'
-
-javascript:
-  $('.type-select').change(function(event) {
-    $.ajax({
-      type: 'GET',
-      url: '/dynamic_objects/new',
-      data: {
-        dynamic_object_type_id: event.target.value
-      },
-      dataType: 'script'
-    })
-  })
-  
-  $(document).ready(function() {
-    $("#object-form").trigger('show');
-  })

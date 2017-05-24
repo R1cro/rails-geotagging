@@ -1,0 +1,17 @@
+<script type="text/javascript">
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 4,
+    center: {lat: 53.9, lng: 27.56}
+  });
+
+  var markers = <%= raw @hash.to_json %>
+
+  for (i = 0; i < markers.length; i++) {
+    marker = new google.maps.Marker({
+      position: new google.maps.LatLng(markers[i].lat, markers[i].lng),
+      map: map
+    });
+  }
+
+</script>
