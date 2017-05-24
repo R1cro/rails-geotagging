@@ -5,13 +5,12 @@ Rails.application.routes.draw do
   root "welcome#index"
 
   resources :connections, only: [:create, :destroy]
-  resources :dynamic_object_types
-
   resources :dynamic_objects do
     collection do
-      get "search"
+      get 'search'
     end
   end
+  resources :dynamic_object_types
 
   namespace :api, defaults: { format: :json } do
     resources :dynamic_objects do
