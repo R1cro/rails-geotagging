@@ -31,7 +31,8 @@
       hr
     
     .col-md-1
-    button.btn.btn-primary.col-md-12[style="margin-right: 3px;"] Get directions
+    
+    button.btn.btn-primary.col-md-12 Get directions
     - if current_user&.id == object.user.id
       = link_to "Edit", edit_dynamic_object_path(object), class: "btn btn-default col-md-6"
       a.btn.btn-danger.col-md-6 Delete

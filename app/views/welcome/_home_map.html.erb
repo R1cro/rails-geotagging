@@ -1,4 +1,5 @@
 <script type="text/javascript">
+  var isLoading = false;
 
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 4,
@@ -13,5 +14,13 @@
       map: map
     });
   }
+
+  var doSearch = _.debounce(function() {
+    $.get('/dynamic_objects/search', map.getBounds().toJSON(), function(response) {
+      console.log(response);
+    })
+  }, 500)
+
+  map.addListener('bounds_changed', doSearch);
 
 </script>
