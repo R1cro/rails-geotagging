@@ -17,7 +17,7 @@ object_types.each do |type|
   DynamicObjectType.find_or_create_by(name: name)
 end
 
-100.times do
+70.times do
   name = "Field-#{rand(1..100)}"
   field_type = 'text_field'
   required = false
@@ -27,5 +27,24 @@ end
     field_type: field_type,
     required: required,
     dynamic_object_type_id: dynamic_object_type_id
+  )
+end
+
+50.times do
+  dynamic_object_type_id = rand(1..19)
+  user_id = 1
+  name = Faker::Lorem.word.titleize
+  description = Faker::Lorem.sentence(7)
+  address = ''
+  latitude = rand(53.872368295977545..53.931735872727586)
+  longitude = rand(27.497406005859375.. 27.601776123046875)
+  DynamicObject.find_or_create_by(
+    name: name,
+    description: description,
+    address: address,
+    latitude: latitude,
+    longitude: longitude,
+    dynamic_object_type_id: dynamic_object_type_id,
+    user_id: user_id
   )
 end
