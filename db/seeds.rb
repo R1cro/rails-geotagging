@@ -1,24 +1,27 @@
 user =  [
   {
-    email: 'ateseyko@qulix.com',
+    email: 'admin@geotagging.com',
     password:              '12345678',
     password_confirmation: '12345678',
     role: 1,
-    name: 'R1cro',
+    name: 'Admin',
   }
 ]
 User.create!(user)
 
-100.times do
-  name = "Type-#{rand(1..1000)}"
+object_types = %w(Car Park Parking Bank Shop Zoo Person Cafe Restaurant Gym
+                   Casino Hospital Library Museum Club
+                   University School Stadium Storage)
+object_types.each do |type|
+  name = type
   DynamicObjectType.find_or_create_by(name: name)
 end
 
-500.times do
-  name = "Field-#{rand(1..10000)}"
+100.times do
+  name = "Field-#{rand(1..100)}"
   field_type = 'text_field'
   required = false
-  dynamic_object_type_id = rand(1..100)
+  dynamic_object_type_id = rand(1..19)
   DynamicObjectField.find_or_create_by(
     name: name,
     field_type: field_type,
