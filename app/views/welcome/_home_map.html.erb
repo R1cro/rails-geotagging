@@ -16,9 +16,14 @@
   }
 
   var doSearch = _.debounce(function() {
-    $.get('/dynamic_objects/search', map.getBounds().toJSON(), function(response) {
-      console.log(response);
-    })
+    $.ajax({
+      type: 'GET',
+      url: '/dynamic_objects/search',
+      data: map.getBounds().toJSON(),
+      dataType: 'script'
+    }, function(response) {
+      console.log(response)
+    });
   }, 500)
 
   map.addListener('bounds_changed', doSearch);
