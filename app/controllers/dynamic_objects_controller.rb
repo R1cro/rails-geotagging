@@ -74,7 +74,7 @@ class DynamicObjectsController < ApplicationController
     end
 
     respond_to do |format|
-      format.js { render '/welcome/search' }
+      format.js { render "/welcome/search" }
     end
   end
 
