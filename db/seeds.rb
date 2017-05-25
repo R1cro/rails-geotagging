@@ -13,15 +13,17 @@ object_types = %w(Car Park Parking Bank Shop Zoo Person Cafe Restaurant Gym
                    Casino Hospital Library Museum Club
                    University School Stadium Storage)
 object_types.each do |type|
-  name = type
-  DynamicObjectType.find_or_create_by(name: name)
+  DynamicObjectType.find_or_create_by(name: type)
 end
 
+types = DynamicObjectType.all
+users = User.all
+
 70.times do
-  name = "Field-#{rand(1..100)}"
+  name = Faker::Lorem.word.titleize
   field_type = 'text_field'
   required = false
-  dynamic_object_type_id = rand(1..19)
+  dynamic_object_type_id = types.sample.id
   DynamicObjectField.find_or_create_by(
     name: name,
     field_type: field_type,
@@ -31,11 +33,11 @@ end
 end
 
 50.times do
-  dynamic_object_type_id = rand(1..19)
-  user_id = 1
+  dynamic_object_type_id = types.sample.id
+  user_id = users.sample.id
   name = Faker::Lorem.word.titleize
   description = Faker::Lorem.sentence(7)
-  address = ''
+  address = Faker::Address.city + ', ' + Faker::Address.street_address
   latitude = rand(53.872368295977545..53.931735872727586)
   longitude = rand(27.497406005859375.. 27.601776123046875)
   DynamicObject.find_or_create_by(
