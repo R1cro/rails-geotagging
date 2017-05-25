@@ -7,6 +7,16 @@ Rails.application.routes.draw do
 
   resources :connections, only: [:create, :destroy]
 
-  resources :dynamic_objects
-  resources :dynamic_object_types
-end
+  resources :dynamic_objects do
+    collection do
+      get "search"
+    end
+  end
+
+  namespace :api, defaults: { format: :json } do
+    resources :dynamic_objects do
+      collection do
+        get "search"
+      end
+    end
+  end
