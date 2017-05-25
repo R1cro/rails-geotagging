@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   resources :users
 
   root "welcome#index"
-  get "/search" => "dynamic_objects#search"
 
   resources :connections, only: [:create, :destroy]
+  resources :dynamic_object_types
 
   resources :dynamic_objects do
     collection do
