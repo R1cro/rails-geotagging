@@ -15,11 +15,13 @@ gem "nokogiri"
 gem "i18n"
 
 gem "font-awesome-rails"
+gem "lodash-rails"
 
 group :development do
   gem "annotate", ">=2.6.0"
   gem "spring"
   gem "figaro"
+  gem "faker"
 end
 
 group :development, :test do
