@@ -1,4 +1,5 @@
 class DynamicObjectsController < ApplicationController
+  respond_to :html, :js
   before_action :authenticate_user!, except: %w(index search show)
 
   def index
@@ -43,7 +44,7 @@ class DynamicObjectsController < ApplicationController
 
   def edit
     @dynamic_object = DynamicObject.find(params[:id])
-    
+
     @marker_hash = Gmaps4rails.build_markers(@dynamic_object) do |object, marker|
       marker.lat object.latitude
       marker.lng object.longitude
@@ -64,18 +65,16 @@ class DynamicObjectsController < ApplicationController
   end
 
   def search
-    @location = params[:search]
-    @distance = params[:miles]
-    @dynamic_object = DynamicObject.near(@location, @distance)
+    bounding_box = [params[:south], params[:west], params[:north], params[:east]]
 
-    if @location.empty?
-      redirect_to :root, notice: "You can't search without a search term; please enter a location and retry!"
-    else
-      if @dynamic_object.length < 1
-        redirect_to :root, notice: "Sorry! We couldn't find any objects within #{@distance} miles of #{@location}."
-      else
-        search_map(@dynamic_object)
-      end
+    @dynamic_objects = DynamicObject.within_bounding_box(bounding_box)
+    @marker_hash = Gmaps4rails.build_markers(@dynamic_objects) do |object, marker|
+      marker.lat object.latitude
+      marker.lng object.longitude
+    end
+
+    respond_to do |format|
+      format.js { render "/welcome/search" }
     end
   end
 
@@ -86,8 +85,6 @@ class DynamicObjectsController < ApplicationController
       @marker_hash = Gmaps4rails.build_markers(@dynamic_object) do |object, marker|
         marker.lat object.latitude
         marker.lng object.longitude
-        marker.infowindow "<a href='/dynamic_objects/" + "#{object.id}" + "'>#{object.name}, #{object.address}</a>"
-        marker.json(title: object.name, id: object.id)
       end
     end
 

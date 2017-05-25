@@ -1,7 +1,22 @@
 div.col-md-6
   #map[style="height: 90%;"]
-    = render '/layouts/home_map'
-.col-md-6
-  - @recent_dynamic_objects.each do |object|
-    = render "object_card", object: object
-    = render "object_modal", object: object
+    = render 'home_map'
+.col-md-6#loading
+  i.fa.fa-refresh.fa-spin.fa-3x.fa-fw
+    span.sr-only Loading...
+
+.col-md-6#dynamic-objects
+  = render 'objects'
+    
+javascript:
+  $('#loading').hide();
+  
+  $(document)
+    .ajaxStart(function () {
+      $('#loading').show();
+      $('#dynamic-objects').hide();
+    })
+    .ajaxStop(function () {
+      $('#loading').hide();
+      $('#dynamic-objects').show();
+    });
