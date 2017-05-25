@@ -37,7 +37,7 @@ end
   user_id = users.sample.id
   name = Faker::Lorem.word.titleize
   description = Faker::Lorem.sentence(7)
-  address = Faker::Address.city + ', ' + Faker::Address.street_address
+  address = Faker::Address.country + ', ' + Faker::Address.city + ', ' + Faker::Address.street_address
   latitude = rand(53.872368295977545..53.931735872727586)
   longitude = rand(27.497406005859375.. 27.601776123046875)
   DynamicObject.find_or_create_by(
