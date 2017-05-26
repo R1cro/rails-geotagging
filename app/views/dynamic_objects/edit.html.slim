@@ -8,27 +8,6 @@
   = render 'form'
   
 javascript:
-  $(document).ready(function() {
-    $("#object-form").trigger('show');
-    
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 13,
-      center: {lat: 53.9, lng: 27.56}
-    });
-    
-    var markers = #{raw @marker_hash.to_json}
-    console.log(markers);
-    
-    var bounds = new google.maps.LatLngBounds();
-      
-    for (i = 0; i < markers.length; i++) {
-      marker = new google.maps.Marker({
-        position: new google.maps.LatLng(markers[i].lat, markers[i].lng),
-        map: map
-      });
-      
-      bounds.extend(marker);
-    }
-    
-    map.fitBounds(bounds);
+  $(document).ready(function () {
+    $('#object-form').trigger("show")
   })
