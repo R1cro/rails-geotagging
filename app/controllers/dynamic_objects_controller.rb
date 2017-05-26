@@ -43,10 +43,15 @@ class DynamicObjectsController < ApplicationController
 
   def edit
     @dynamic_object = DynamicObject.find(params[:id])
-    
+    @dynamic_object.dynamic_object_type_id = params[:dynamic_object_type_id]  || @dynamic_object.dynamic_object_type_id
     @marker_hash = Gmaps4rails.build_markers(@dynamic_object) do |object, marker|
       marker.lat object.latitude
       marker.lng object.longitude
+    end
+
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 
@@ -60,6 +65,10 @@ class DynamicObjectsController < ApplicationController
       end
     else
       redirect_to dynamic_object_path(@dynamic_object), notice: "You don't have permission to go there."
+    end
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 
