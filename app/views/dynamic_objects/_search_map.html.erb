@@ -5,6 +5,25 @@
     maxZoom: 17
   });
   $(document).ready(function() {
+    var markerOnMap;
+    function placeNewMarker(location) {
+      if (markerOnMap) {
+        markerOnMap.setPosition(location);
+      }
+      else {
+        markerOnMap = new google.maps.Marker({
+          position: location,
+          animation: google.maps.Animation.BOUNCE,
+          map: map
+        });
+      }
+    }
+    google.maps.event.addListener(map, 'click', function(event) {
+      placeNewMarker(event.latLng);
+      $("#latitude").val(event.latLng.lat());
+      $("#longitude").val(event.latLng.lng());
+    });
+
     var bounds = new google.maps.LatLngBounds();
     var markers = <%= raw @marker_hash.to_json %>
     for (i = 0; i < markers.length; i++) {
@@ -15,6 +34,7 @@
       bounds.extend(marker.position);
     }
     map.fitBounds(bounds);
+
     $('#object-form').on('show', function() {
       var input = /** @type {!HTMLInputElement} */(
           document.getElementById('location-input'));
