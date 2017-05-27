@@ -16,7 +16,7 @@
             li
               = msg
     = f.hidden_field :dynamic_object_type_id
-    
+
     .panel.panel-default
       .panel-heading
           | Object Details
@@ -45,16 +45,16 @@
       hr
       .actions
       = f.submit class: 'btn btn-default btn-primary col-md-12'
-  
+
 javascript:
-  $('.type-select').change(function(event) {
+  $('.type-select').change(function (event) {
+    var URL = "#{request.path}";
     $.ajax({
       type: 'GET',
-      url: '/dynamic_objects/new',
+      url: URL,
       data: {
         dynamic_object_type_id: event.target.value
       },
       dataType: 'script'
     })
-  })
-      
+  });
