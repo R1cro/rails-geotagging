@@ -14,10 +14,12 @@
 #  updated_at         :datetime
 #  name               :string
 #  role               :integer
+#  auth_token         :string
 #
 # Indexes
 #
-#  index_users_on_email  (email) UNIQUE
+#  index_users_on_auth_token  (auth_token)
+#  index_users_on_email       (email) UNIQUE
 #
 
 class User < ActiveRecord::Base
@@ -42,5 +44,15 @@ class User < ActiveRecord::Base
       user.password_confirmation = Rails.application.secrets.admin_password
       user.admin!
     end
+  end
+
+  def generate_auth_token
+    token = SecureRandom.hex
+    self.update_columns(auth_token: token)
+    token
+  end
+
+  def invalidate_auth_token
+    self.update_columns(auth_token: nil)
   end
 end

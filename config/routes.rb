@@ -19,5 +19,10 @@ Rails.application.routes.draw do
         get "search"
       end
     end
+    resources :users
+    as :user do
+      post   "/login"       => "sessions#create"
+      delete "/logout"      => "sessions#destroy"
+    end
   end
 end
