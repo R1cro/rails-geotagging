@@ -1,6 +1,4 @@
-class API::DynamicObjectsController < API::ApiController
-  before_action :require_authentication!
-
+class API::DynamicObjectsController < API::BaseController
   def search
     if params[:radius]
       center = [params[:center][:lat], params[:center][:lng]]

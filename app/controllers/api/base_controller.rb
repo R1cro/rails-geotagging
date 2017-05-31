@@ -1,9 +1,9 @@
-class API::ApiController < ApplicationController
+class API::BaseController < ApplicationController
   before_action :require_authentication!
 
   def require_authentication!
     return true if authenticate_token
-    render json: { error: "Access denied. Your token is totally bullshit. Check it, please." }, status: 401
+    render json: { error: "Access denied." }, status: 401
   end
 
   protected

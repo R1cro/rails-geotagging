@@ -1,5 +1,4 @@
-class API::UsersController < API::ApiController
-  before_action :require_authentication!
+class API::UsersController < API::BaseController
   def index
     render json: { users: User.all }
   end
