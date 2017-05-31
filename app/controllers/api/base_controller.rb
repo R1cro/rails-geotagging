@@ -3,14 +3,14 @@ class API::BaseController < ApplicationController
 
   def require_authentication!
     return true if authenticate_token
-    render json: { error: "Access denied." }, status: 401
+    render json: { error: "Access denied. Your token is invalidated or expired." }, status: 401
   end
 
   protected
 
     def authenticate_token
       authenticate_with_http_token do |token, options|
-        User.find_by(auth_token: token)
+        User.where(auth_token: token).where("token_created_at >= ?", 1.day.ago).first
       end
     end
 end

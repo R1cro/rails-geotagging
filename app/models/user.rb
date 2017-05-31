@@ -15,11 +15,12 @@
 #  name               :string
 #  role               :integer
 #  auth_token         :string
+#  token_created_at   :datetime
 #
 # Indexes
 #
-#  index_users_on_auth_token  (auth_token)
-#  index_users_on_email       (email) UNIQUE
+#  index_users_on_auth_token_and_token_created_at  (auth_token,token_created_at)
+#  index_users_on_email                            (email) UNIQUE
 #
 
 class User < ActiveRecord::Base
@@ -48,11 +49,11 @@ class User < ActiveRecord::Base
 
   def generate_auth_token
     token = SecureRandom.hex
-    self.update_columns(auth_token: token)
+    self.update_columns(auth_token: token, token_created_at: Time.zone.now)
     token
   end
 
   def invalidate_auth_token
-    self.update_columns(auth_token: nil)
+    self.update_columns(auth_token: nil, token_created_at: nil)
   end
 end
