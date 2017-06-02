@@ -23,9 +23,11 @@ group :development do
 end
 
 group :development, :test do
-  gem "rspec-rails", "~> 3.0.0"
+  gem "rspec-rails", "~> 3.5.0"
+  gem "rails-controller-testing"
   gem "capybara"
   gem "factory_girl_rails"
+  gem "faker"
   gem "pry"
   gem "dotenv-rails"
 end

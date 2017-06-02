@@ -1,6 +1,10 @@
 class API::BaseController < ApplicationController
   before_action :require_authentication!
 
+  respond_to :json
+
+  protect_from_forgery with: :null_session
+
   def require_authentication!
     return true if authenticate_token
     render json: { error: "Access denied. Your token is invalidated or expired." }, status: 401
